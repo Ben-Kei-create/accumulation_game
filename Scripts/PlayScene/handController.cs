@@ -5,21 +5,10 @@ using UnityEngine;
 public class handController : MonoBehaviour
 {
     // X座標の範囲
-    private float minX = -1f;
-    private float maxX = 3f;
+    private float minX = -1.8f;
+    private float maxX = 2.8f;
     // 移動速度
     public float speed = 5f;
-
-    // プレハブを保持する配列
-    public GameObject[] prefabs; // 配列を使用して3種類のプレハブを保持
-
-    private GameObject currentPrefab; // 現在表示されているプレハブ
-
-    void Start()
-    {
-        // ゲーム開始時にランダムにプレハブを選択して表示
-        DisplayRandomPrefab();
-    }
 
     void Update()
     {
@@ -37,24 +26,5 @@ public class handController : MonoBehaviour
 
         // 新しい位置に設定
         transform.position = position;
-
-        // Enterキーが押された場合、次のプレハブを表示
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            DisplayRandomPrefab();
-        }
-    }
-
-    private void DisplayRandomPrefab()
-    {
-        // 既に表示されているプレハブがあれば削除
-        if (currentPrefab != null)
-        {
-            Destroy(currentPrefab);
-        }
-
-        // 新しいプレハブをランダムに選択
-        int randomIndex = Random.Range(0, prefabs.Length);
-        currentPrefab = Instantiate(prefabs[randomIndex], new Vector3(transform.position.x - 0.5f, 3.5f, transform.position.z), Quaternion.identity);
     }
 }
